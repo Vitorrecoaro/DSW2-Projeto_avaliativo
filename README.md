@@ -1,2 +1,29 @@
-# DSW2-Projeto_avaliativo
-Projeto avaliativo da disciplina de desenvolvimento web 2 da UFSCar no semestre 2022.2
+# DSW2 - Projeto avaliativo.
+
+## POKÉDEX - UFSCar 2022.2 - DSW2
+
+Para o avaliação da disciplina será desenvolvido uma pokédex, ou algo parecido, utilizando a [PokéAPI](https://pokeapi.co/) e talvez algumas ideias a mais que podemos fazer mais adiante. Para isso, podemos separar os dados que são recebidos desta API.
+
+### O que a API nos proporciona?
+
+A API proporciona:
+
+-   Fazer busca de dados de determinado Pokémon, assim recebemos:
+
+    -   As habilidades que este Pokémon pode ter.
+    -   Formas o Pokémon pode ter.
+    -   Dados de quais versões este Pokémon se encontra.
+    -   Altura deste Pokémon.
+    -   Itens que este Pokémon pode segurar.
+    -   Áreas que se pode encontrar este Pokémon.
+    -   Imagens deste determinado Pokémon.
+    -   Status iniciais do Pokémon.
+    -   Tipos do Pokémon.
+    -   Peso deste Pokémon.
+
+-   Fazer a busca de determinada fruta.
+-   Fazer a busca de cadeias de evolução de determinado Pokémon.
+-   Fazer busca de dados de jogos de diferentes Pokémons.
+-   Fazer busca de dados de itens.
+
+E muito mais...
