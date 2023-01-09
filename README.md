@@ -27,3 +27,5 @@ A API proporciona:
 -   Fazer busca de dados de itens.
 
 E muito mais...
+
+### [Protótipo criado no Figma](https://www.figma.com/file/cu6TKQPhe6UM6oeWllG9pk/DSW2---Prot%C3%B3tipo-Pokedex?node-id=0%3A1&t=wYi85PJz5Q38o2x9-1)
