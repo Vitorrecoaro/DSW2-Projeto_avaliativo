@@ -1,0 +1,15 @@
+{
+  "name": "aa1",
+  "version": "1.0.1",
+  "description": "trabalho de dsw2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-server": "browser-sync . -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.27.11"
+  }
+}

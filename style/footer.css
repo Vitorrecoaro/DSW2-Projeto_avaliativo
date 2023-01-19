@@ -1,0 +1,8 @@
+.grid-footer {
+    grid-area: grid-footer;
+    background-color: #ff2020;
+    padding: 0.625rem;
+    text-align: center;
+    color: #fff;
+    height: 100%;
+}

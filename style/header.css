@@ -1,0 +1,143 @@
+.grid-header {
+    grid-area: grid-header;
+    padding: 0rem;
+    height: 6.25rem;
+    width: 100%;
+    text-align: center;
+}
+
+.grid-header:after {
+    content: ' ';
+    background: #ff2020;
+    width: 15.625rem;
+    height: 6.25rem;
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    z-index: -2;
+}
+
+.grid-header:before {
+    content: ' ';
+    background: #ff2020;
+    width: 6.25rem;
+    height: 6.25rem;
+    position: absolute;
+    top: -1.3125rem;
+    left: 12.5rem;
+    transform: rotate(45deg);
+    z-index: -2;
+}
+
+.grid-header-nav:before {
+    content: ' ';
+    background: #ff2020;
+    width: calc(100% - 15.625rem);
+    height: 3.125rem;
+    position: absolute;
+    top: 0;
+    left: 15.625rem;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.grid-header-logo {
+    height: 100%;
+    width: 15rem;
+    float: left;
+    transition: all 0.5s ease;
+    z-index: 3;
+}
+
+.header-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.grid-header-logo:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: all 0.5s ease;
+    filter: drop-shadow(0 0 0.75rem #ffffff) brightness(1.5);
+}
+
+.grid-header-nav {
+    height: 3rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-header-search-full {
+    width: 2fr;
+    margin: 0.625rem;
+    height: 2rem;
+    padding: 0 0.625rem;
+    /* float to center-right */
+    float: right;
+    position: relative;
+}
+
+.grid-header-search-full input {
+    width: 100%;
+    height: 100%;
+    background-color: #791a1a;
+    border: 0.0625rem solid #000;
+    border-radius: 0.9375rem;
+    color: rgb(255, 255, 255);
+    padding-left: 0.9375rem;
+    font-weight: bold;
+}
+
+.grid-header-search-full img {
+    height: 60%;
+    position: absolute;
+    right: 1.5rem;
+    top: 0.4rem;
+}
+
+.grid-header-search-full img:hover {
+    cursor: pointer;
+}
+
+.grid-header-mobile {
+    height: 4rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    float: right;
+}
+
+.grid-header-mobile img {
+    list-style: none;
+    display: flex;
+    height: 2rem;
+    text-align: center;
+}
+
+.grid-header-mobile:before {
+    content: ' ';
+    background: #ff2020;
+    width: calc(100% - 15.625rem);
+    height: 3.125rem;
+    position: absolute;
+    top: 0;
+    left: 15.625rem;
+    z-index: -2;
+    overflow: hidden;
+}
+
+@media(max-width: 31.5rem) {
+    .grid-header-mobile {
+        display: inline-flex;
+    }
+
+    .grid-header-search-full {
+        display: none;
+    }
+
+    .grid-header-nav {
+        display: none;
+    }
+}

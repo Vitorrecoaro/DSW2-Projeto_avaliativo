@@ -1,0 +1,257 @@
+.grid-image {
+    grid-area: grid-sub-header;
+    width: 100%;
+    height: 26rem;
+    position: relative;
+    top: -3.125rem;
+    margin-bottom: -3.25rem;
+    text-align: center;
+    overflow: hidden;
+    z-index: -3;
+}
+
+
+.pokedex-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -3;
+}
+
+.pokedex-pokemon-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+}
+
+.pokedex-pokemon:after {
+    content: ' ';
+    background: #ff2020;
+    width: 6.25rem;
+    height: 6.25rem;
+    position: relative;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.grid-content {
+    grid-area: grid-content;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-areas: 'grid-aside grid-content-inside grid-content-inside grid-content-inside grid-right'
+}
+
+@media(max-width: 50rem) {
+    .grid-content {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-areas:
+            'grid-aside'
+            'grid-content-inside'
+            'grid-right';
+    }
+}
+
+.grid-aside {
+    grid-area: grid-aside;
+    background-color: #5b9ecf;
+    margin: 0.625rem;
+    padding: 0.625rem;
+    border-radius: 1.25rem;
+    text-align: center;
+    z-index: 1;
+}
+
+.grid-aside ul {
+    list-style: none;
+    text-align: left;
+    padding: 0.625rem;
+}
+
+.grid-aside ul li {
+    margin: 0.3125rem;
+}
+
+.stats-power-bar {
+    width: 100%;
+    height: 1.875rem;
+    background-color: #3f6d8f;
+    border-radius: 1.25rem;
+    display: inline-flex;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.stats-power-bar-fill {
+    width: 20%;
+    height: 100%;
+    background-color: #ffffff;
+    margin: 0 0 0 0;
+    padding-right: 0.3125rem;
+}
+
+.stats-power-bar-fill:after {
+    content: '';
+    background-color: #3f6d8f;
+    width: 0.5rem;
+    height: 6.25rem;
+    position: absolute;
+    rotate: 15deg;
+    top: -3.125rem;
+    margin-left: 20%;
+}
+
+.grid-content-inside {
+    grid-area: grid-content-inside;
+    padding: 1.25rem;
+    height: 100%;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'grid-content-title grid-content-title'
+        'grid-content-left grid-content-right';
+    width: 100%;
+}
+
+@media(max-width: 56.25rem) {
+    .grid-content-inside {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'grid-content-title'
+            'grid-content-left'
+            'grid-content-right';
+    }
+}
+
+.grid-content-title {
+    font-size: 2rem;
+    font-weight: bold;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    grid-area: grid-content-title;
+}
+
+.content-title-properties {
+    display: inline-flex;
+    height: 3.5rem;
+    margin: 0.625rem;
+}
+
+.content-partition {
+    width: 100%;
+    height: 0.0625rem;
+    background-color: #3f6d8f;
+    margin: 0.625rem 0 0.625rem 0;
+    display: flex;
+}
+
+.grid-content-left {
+    grid-area: grid-content-left;
+    margin: 0.625rem;
+    padding: 0.625rem;
+    border-radius: 1.25rem;
+    text-align: center;
+    width: 100%;
+}
+
+.content-left-card {
+    width: 100%;
+    padding-bottom: 0.625rem;
+    position: relative;
+}
+
+.card-background {
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.weight-height {
+    width: 100%;
+    background-color: #DDD;
+}
+
+.weight-height {
+    display: inline-flex;
+    padding: 0.625rem;
+}
+
+.weight-height .weight {
+    width: 50%;
+    text-align: left;
+}
+
+.weight-height .height {
+    width: 50%;
+    text-align: right;
+}
+
+.card-image {
+    width: 90%;
+    object-fit: cover;
+    position: relative;
+}
+
+.grid-content-right {
+    grid-area: grid-content-right;
+    margin: 0.625rem;
+    padding: 0.625rem;
+    text-align: left;
+}
+
+.grid-content-right div {
+    width: 100%;
+    padding: 0.625rem;
+}
+
+.grid-content-right div ul {
+    text-align: left;
+    padding: 0.625rem;
+}
+
+.content-right-properties {
+    display: inline-flex;
+    height: 3.5rem;
+    margin: 0.625rem;
+}
+
+.grid-right {
+    grid-area: grid-right;
+    margin: 0.625rem;
+    padding: 0.625rem;
+    border-radius: 1.25rem;
+    text-align: center;
+    background-color: #5b9ecf;
+}
+
+.grid-right ul {
+    list-style: none;
+    text-align: left;
+    padding: 0.625rem;
+    width: 100%;
+}
+
+.grid-right ul li {
+    margin: 0.3125rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+}
+
+.grid-right-properties {
+    display: inline-flex;
+    height: 3.5rem;
+    margin: 0.625rem;
+}
