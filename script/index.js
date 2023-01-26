@@ -10,3 +10,14 @@ button.addEventListener('click', function() {
     pokeball_bottom.classList.toggle('pokeball-bottom-open');
     content.classList.toggle('content-open');
 });
+
+// document on load
+document.addEventListener('DOMContentLoaded', function() {
+    //wait 1 second before adding class
+    setTimeout(function() {
+        pokeball_top.classList.add('pokeball-top-open');
+        button.classList.add('pokeball-middle-open');
+        pokeball_bottom.classList.add('pokeball-bottom-open');
+        content.classList.add('content-open');
+    }, 500);
+});
