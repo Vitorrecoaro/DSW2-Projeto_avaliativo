@@ -1,241 +1,245 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <link rel="stylesheet" href="style/default.css" />
+        <link rel="stylesheet" href="style/header.css" />
+        <link rel="stylesheet" href="style/footer.css" />
+        <link rel="stylesheet" href="style/search-page.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="/images/Poké_Ball_icon.svg" />
+        <meta charset="utf-8" />
+        <title>Pokédex</title>
+    </head>
 
-<head>
-    <link rel="stylesheet" href="style/default.css" />
-    <link rel="stylesheet" href="style/header.css" />
-    <link rel="stylesheet" href="style/footer.css" />
-    <link rel="stylesheet" href="style/search-page.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <meta charset="utf-8" />
-    <title>Título</title>
-</head>
-
-<body class="grid-container">
-    <div class="grid-header">
-        <a class="grid-header-logo" href="/index.html">
-            <img class="header-img" src="images/header.png" alt="Header" />
-        </a>
-        <div class="grid-header-nav">
-        </div>
-        <div class="grid-header-search-full">
-            <input type="text" placeholder="Procurar">
-            <img class="header-search-icon" src="images/search_icon.png" alt="Search" />
-        </div>
-        <div class="grid-header-mobile">
-            <div class="grid-header-search-mobile">
+    <body class="grid-container">
+        <div class="grid-header">
+            <a class="grid-header-logo" href="/index.html">
+                <img class="header-img" src="images/header.png" alt="Header" />
+            </a>
+            <div class="grid-header-nav"></div>
+            <div class="grid-header-search-full">
+                <input type="text" placeholder="Procurar" />
                 <img class="header-search-icon" src="images/search_icon.png" alt="Search" />
             </div>
-        </div>
-    </div> 
-        
-    <div class="grid-search-filter">
-        <label id='label-dropdown-navbar-menu' for='checkbox-dropdown-navbar-menu'>
-            <i class='material-icons navbar-menu-icon'>
-            menu
-            </i>
-        </label>
-        <input type='checkbox' id='checkbox-dropdown-navbar-menu' />
-        <ul class="search-categories">
-            <li>
-                <label for="filter-type">Tipo:</label>
-                <select id="filter-type" name="filter-type">
-                    <option value="" selected>Todos</option>
-                    <option value=Aço>Aço</option>
-                    <option value=Água>Água</option>
-                    <option value=Dragão>Dragão</option>
-                    <option value=Elétrico>Elétrico</option>
-                    <option value=Escuridão>Escuridão</option>
-                    <option value=Fada>Fada</option>
-                    <option value=Fantasma>Fantasma</option>
-                    <option value=Fogo>Fogo</option>
-                    <option value=Gelo>Gelo</option>
-                    <option value=Grama>Grama</option>
-                    <option value=Inseto>Inseto</option>
-                    <option value=Lutador>Lutador</option>
-                    <option value=Normal>Normal</option>
-                    <option value=Pedra>Pedra</option>
-                    <option value=Psíquico>Psíquico</option>
-                    <option value=Terra>Terra</option>
-                    <option value=Veneno>Veneno</option>
-                    <option value=Voador>Voador</option>
-                </select>
-            </li>
-            <li>
-                <label for="filter-generation">Geração:</label>
-                <select id="filter-generation" name="filter-generation">
-                    <option value="" selected>Todas</option>
-                    <option value=1>1</option>
-                    <option value=2>2</option>
-                    <option value=3>3</option>
-                    <option value=4>4</option>
-                    <option value=5>5</option>
-                    <option value=6>6</option>
-                    <option value=7>7</option>
-                    <option value=8>8</option>
-                </select>
-            </li>
-            <li>
-                <input type="button" class="button-filter" value="Filtrar"></input>
-            </li>
-        </ul>
-        
-    </div>
-    
-    <div class="grid-content">
-        <div class="grid-content-search">
-            <h2>Filtrando por: Exemplo</h2>
-            <div class="grid-content-search-results">
-                <a href="/charizard.html">
-                    <div class="grid-content-search-results-item">
-                        <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
-                        <img class="search-results-item-img"
-                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
-                            alt="Charizard" />
-                        <div class="search-results-item-info">
-                            <h2>Charizard</h2>
-                            <p>#6</p>
-                            <p>Fogo</p>
-                            <p>Geração 1</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="grid-content-search-results-item">
-                        <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
-                        <img class="search-results-item-img"
-                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
-                            alt="Ditto" />
-                        <div class="search-results-item-info">
-                            <h2>Ditto</h2>
-                            <p>#132</p>
-                            <p>Normal</p>
-                            <p>Geração 1</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="grid-content-search-results-item">
-                        <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
-                        <img class="search-results-item-img"
-                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
-                            alt="Squirtle" />
-                        <div class="search-results-item-info">
-                            <h2>Squirtle</h2>
-                            <p>#7</p>
-                            <p>Água</p>
-                            <p>Geração 1</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="grid-content-search-results-item">
-                        <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
-                        <img class="search-results-item-img"
-                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png"
-                            alt="Mewtwo" />
-                        <div class="search-results-item-info">
-                            <h2>Mewtwo</h2>
-                            <p>#150</p>
-                            <p>Psíquico</p>
-                            <p>Geração 1</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="grid-content-search-results-item">
-                        <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
-                        <img class="search-results-item-img"
-                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-                            alt="Pikachu" />
-                        <div class="search-results-item-info">
-                            <h2>Pikachu</h2>
-                            <p>#25</p>
-                            <p>Elétrico</p>
-                            <p>Geração 1</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="grid-content-search-results-item">
-                        <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
-                        <img class="search-results-item-img"
-                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png"
-                            alt="Eevee" />
-                        <div class="search-results-item-info">
-                            <h2>Eevee</h2>
-                            <p>#133</p>
-                            <p>Normal</p>
-                            <p>Geração 1</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="grid-content-search-results-item">
-                        <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
-                        <img class="search-results-item-img"
-                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/404.png"
-                            alt="Luxio" />
-                        <div class="search-results-item-info">
-                            <h2>Luxio</h2>
-                            <p>#404</p>
-                            <p>Elétrico</p>
-                            <p>Geração 4</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="grid-content-search-results-item">
-                        <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
-                        <img class="search-results-item-img"
-                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png"
-                            alt="Rapidash" />
-                        <div class="search-results-item-info">
-                            <h2>Rapidash</h2>
-                            <p>#78</p>
-                            <p>Fogo</p>
-                            <p>Geração 1</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="grid-content-search-results-item">
-                        <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
-                        <img class="search-results-item-img"
-                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/523.png"
-                            alt="Zebstrika" />
-                        <div class="search-results-item-info">
-                            <h2>Zebstrika</h2>
-                            <p>#523</p>
-                            <p>Elétrico</p>
-                            <p>Geração 5</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="grid-content-search-results-item">
-                        <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
-                        <img class="search-results-item-img"
-                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png"
-                            alt="Garchomp" />
-                        <div class="search-results-item-info">
-                            <h2>Garchomp</h2>
-                            <p>#445</p>
-                            <p>Dragão</p>
-                            <p>Geração 5</p>
-                        </div>
-                    </div>
-                </a>
+            <div class="grid-header-mobile">
+                <div class="grid-header-search-mobile">
+                    <img class="header-search-icon" src="images/search_icon.png" alt="Search" />
+                </div>
             </div>
         </div>
-    </div>
-    <div class="grid-footer">
-        <p>Feito por:</p>
-        <p>Matheus Rezende Milani Videira</p>
-        <p>Vanessa de Cássia Alves</p>
-        <p>Vitor de Almeida Recoaro</p>
-        <p>Para a matéria de Desenvolvimento de Software para Web 2</p>
-    </div>
-</body>
 
+        <div class="grid-search-filter">
+            <label id="label-dropdown-navbar-menu" for="checkbox-dropdown-navbar-menu">
+                <i class="material-icons navbar-menu-icon"> menu </i>
+            </label>
+            <input type="checkbox" id="checkbox-dropdown-navbar-menu" />
+            <ul class="search-categories">
+                <li>
+                    <label for="filter-type">Tipo:</label>
+                    <select id="filter-type" name="filter-type">
+                        <option value="" selected>Todos</option>
+                        <option value="Aço">Aço</option>
+                        <option value="Água">Água</option>
+                        <option value="Dragão">Dragão</option>
+                        <option value="Elétrico">Elétrico</option>
+                        <option value="Escuridão">Escuridão</option>
+                        <option value="Fada">Fada</option>
+                        <option value="Fantasma">Fantasma</option>
+                        <option value="Fogo">Fogo</option>
+                        <option value="Gelo">Gelo</option>
+                        <option value="Grama">Grama</option>
+                        <option value="Inseto">Inseto</option>
+                        <option value="Lutador">Lutador</option>
+                        <option value="Normal">Normal</option>
+                        <option value="Pedra">Pedra</option>
+                        <option value="Psíquico">Psíquico</option>
+                        <option value="Terra">Terra</option>
+                        <option value="Veneno">Veneno</option>
+                        <option value="Voador">Voador</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="filter-generation">Geração:</label>
+                    <select id="filter-generation" name="filter-generation">
+                        <option value="" selected>Todas</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </li>
+                <li>
+                    <input type="button" class="button-filter" value="Filtrar" />
+                </li>
+            </ul>
+        </div>
+
+        <div class="grid-content">
+            <div class="grid-content-search">
+                <div class="grid-content-search-results">
+                    <a href="/charizard.html">
+                        <div class="grid-content-search-results-item">
+                            <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
+                            <img
+                                class="search-results-item-img"
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
+                                alt="Charizard" />
+                            <div class="search-results-item-info">
+                                <h2>Charizard</h2>
+                                <p>#6</p>
+                                <p>Fogo</p>
+                                <p>Geração 1</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="grid-content-search-results-item">
+                            <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
+                            <img
+                                class="search-results-item-img"
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
+                                alt="Ditto" />
+                            <div class="search-results-item-info">
+                                <h2>Ditto</h2>
+                                <p>#132</p>
+                                <p>Normal</p>
+                                <p>Geração 1</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="grid-content-search-results-item">
+                            <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
+                            <img
+                                class="search-results-item-img"
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+                                alt="Squirtle" />
+                            <div class="search-results-item-info">
+                                <h2>Squirtle</h2>
+                                <p>#7</p>
+                                <p>Água</p>
+                                <p>Geração 1</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="grid-content-search-results-item">
+                            <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
+                            <img
+                                class="search-results-item-img"
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png"
+                                alt="Mewtwo" />
+                            <div class="search-results-item-info">
+                                <h2>Mewtwo</h2>
+                                <p>#150</p>
+                                <p>Psíquico</p>
+                                <p>Geração 1</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="grid-content-search-results-item">
+                            <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
+                            <img
+                                class="search-results-item-img"
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+                                alt="Pikachu" />
+                            <div class="search-results-item-info">
+                                <h2>Pikachu</h2>
+                                <p>#25</p>
+                                <p>Elétrico</p>
+                                <p>Geração 1</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="grid-content-search-results-item">
+                            <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
+                            <img
+                                class="search-results-item-img"
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png"
+                                alt="Eevee" />
+                            <div class="search-results-item-info">
+                                <h2>Eevee</h2>
+                                <p>#133</p>
+                                <p>Normal</p>
+                                <p>Geração 1</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="grid-content-search-results-item">
+                            <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
+                            <img
+                                class="search-results-item-img"
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/404.png"
+                                alt="Luxio" />
+                            <div class="search-results-item-info">
+                                <h2>Luxio</h2>
+                                <p>#404</p>
+                                <p>Elétrico</p>
+                                <p>Geração 4</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="grid-content-search-results-item">
+                            <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
+                            <img
+                                class="search-results-item-img"
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png"
+                                alt="Rapidash" />
+                            <div class="search-results-item-info">
+                                <h2>Rapidash</h2>
+                                <p>#78</p>
+                                <p>Fogo</p>
+                                <p>Geração 1</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="grid-content-search-results-item">
+                            <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
+                            <img
+                                class="search-results-item-img"
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/523.png"
+                                alt="Zebstrika" />
+                            <div class="search-results-item-info">
+                                <h2>Zebstrika</h2>
+                                <p>#523</p>
+                                <p>Elétrico</p>
+                                <p>Geração 5</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="grid-content-search-results-item">
+                            <img class="search-results-item-img-bg" src="images/pokedexwpp.jpg" alt="Pokedex" />
+                            <img
+                                class="search-results-item-img"
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png"
+                                alt="Garchomp" />
+                            <div class="search-results-item-info">
+                                <h2>Garchomp</h2>
+                                <p>#445</p>
+                                <p>Dragão</p>
+                                <p>Geração 5</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="grid-footer">
+            <p>Feito por:</p>
+            <p>Matheus Rezende Milani Videira</p>
+            <p>Vanessa de Cássia Alves</p>
+            <p>Vitor de Almeida Recoaro</p>
+            <p>Para a matéria de Desenvolvimento de Software para Web 2</p>
+        </div>
+    </body>
 </html>
