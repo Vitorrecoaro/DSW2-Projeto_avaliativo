@@ -119,10 +119,15 @@
 .grid-header-mobile img {
     list-style: none;
     display: flex;
-    height: 2rem;
+    height: 1.5rem;
     text-align: center;
+    margin: 0px 15px 10px;
+    padding: 1px;
 }
 
+.grid-header-mobile img:hover {
+    cursor: pointer;
+}
 .grid-header-mobile:before {
     content: ' ';
     background: #ff2020;
@@ -135,7 +140,7 @@
     overflow: hidden;
 }
 
-@media(max-width: 31.5rem) {
+@media(max-width: 32.5rem) {
     .grid-header-mobile {
         display: inline-flex;
     }

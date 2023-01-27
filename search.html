@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="style/header.css" />
     <link rel="stylesheet" href="style/footer.css" />
     <link rel="stylesheet" href="style/search-page.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta charset="utf-8" />
     <title>Título</title>
 </head>
@@ -26,8 +27,15 @@
                 <img class="header-search-icon" src="images/search_icon.png" alt="Search" />
             </div>
         </div>
-    </div>
+    </div> 
+        
     <div class="grid-search-filter">
+        <label id='label-dropdown-navbar-menu' for='checkbox-dropdown-navbar-menu'>
+            <i class='material-icons navbar-menu-icon'>
+            menu
+            </i>
+        </label>
+        <input type='checkbox' id='checkbox-dropdown-navbar-menu' />
         <ul class="search-categories">
             <li>
                 <label for="filter-type">Tipo:</label>
@@ -68,10 +76,12 @@
                 </select>
             </li>
             <li>
-                <button type="button">Filtrar</button>
+                <input type="button" class="button-filter" value="Filtrar"></input>
             </li>
         </ul>
+        
     </div>
+    
     <div class="grid-content">
         <div class="grid-content-search">
             <h2>Filtrando por: Exemplo</h2>
