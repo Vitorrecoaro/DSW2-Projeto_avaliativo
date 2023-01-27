@@ -10,6 +10,17 @@
     z-index: -3;
 }
 
+.grid-content-inside {
+    grid-template-areas:
+        "grid-content-title grid-content-title grid-content-title grid-content-title"
+        "grid-content-left grid-content-right grid-content-left grid-content-right";
+}
+.grid-content {
+    display: grid;
+    padding: 0px 2.5%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 0.5fr;
+    grid-template-areas: "grid-aside grid-content-inside grid-content-inside grid-content-inside grid-right";
+}
 
 .pokedex-background {
     width: 100%;
@@ -29,7 +40,7 @@
 }
 
 .pokedex-pokemon-floor {
-    content: ' ';
+    content: " ";
     background: #d5d5d5;
     width: 20rem;
     height: 5rem;
@@ -39,23 +50,6 @@
     z-index: -1;
     border-radius: 50%;
     box-shadow: 0 1rem 3rem 2rem #000000aa;
-}
-
-.grid-content {
-    grid-area: grid-content;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-areas: 'grid-aside grid-content-inside grid-content-inside grid-content-inside grid-right'
-}
-
-@media(max-width: 50rem) {
-    .grid-content {
-        grid-template-columns: repeat(1, 1fr);
-        grid-template-areas:
-            'grid-aside'
-            'grid-content-inside'
-            'grid-right';
-    }
 }
 
 .grid-aside {
@@ -98,7 +92,7 @@
 }
 
 .stats-power-bar-fill:after {
-    content: '';
+    content: "";
     background-color: #3f6d8f;
     width: 0.5rem;
     height: 6.25rem;
@@ -115,19 +109,10 @@
     text-align: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: 'grid-content-title grid-content-title'
-        'grid-content-left grid-content-right';
+    grid-template-areas:
+        "grid-content-title grid-content-title"
+        "grid-content-left grid-content-right";
     width: 100%;
-}
-
-@media(max-width: 56.25rem) {
-    .grid-content-inside {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            'grid-content-title'
-            'grid-content-left'
-            'grid-content-right';
-    }
 }
 
 .grid-content-title {
@@ -180,7 +165,7 @@
 
 .weight-height {
     width: 100%;
-    background-color: #DDD;
+    background-color: #ddd;
 }
 
 .weight-height {
@@ -256,4 +241,48 @@
     display: inline-flex;
     height: 3.5rem;
     margin: 0.625rem;
+}
+
+@media (max-width: 1200px) {
+    .grid-content-inside {
+        grid-template-areas:
+            "grid-content-title grid-content-title grid-content-title"
+            "grid-content-left grid-content-right grid-content-right";
+    }
+    .grid-content {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+            "grid-content-inside grid-content-inside grid-right"
+            "grid-aside grid-aside grid-right";
+    }
+}
+
+@media (max-width: 950px) {
+    .grid-content-inside {
+        grid-template-areas:
+            "grid-content-title grid-content-title"
+            "grid-content-left grid-content-right";
+    }
+    .grid-content {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "grid-content-inside grid-content-inside"
+            "grid-aside grid-right";
+    }
+}
+
+@media (max-width: 700px) {
+    .grid-content-inside {
+        grid-template-areas:
+            "grid-content-title grid-content-title"
+            "grid-content-left grid-content-left"
+            "grid-content-right grid-content-right";
+    }
+    .grid-content {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "grid-content-inside grid-content-inside"
+            "grid-aside grid-aside"
+            "grid-right grid-right";
+    }
 }
