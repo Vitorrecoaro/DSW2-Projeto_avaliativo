@@ -2,6 +2,12 @@
 
 ## POKÉDEX - UFSCar 2022.2 - DSW2
 
+Integrantes do grupo:
+
+-   Matheus Rezende Milani Videira - 790809
+-   Vanessa de Cássia Alves - 795314
+-   Vitor de Almeida Recoaro - 790035
+
 Para o avaliação da disciplina será desenvolvido uma pokédex, ou algo parecido, utilizando a [PokéAPI](https://pokeapi.co/) e talvez algumas ideias a mais que podemos fazer mais adiante. Para isso, podemos separar os dados que são recebidos desta API.
 
 ### O que a API nos proporciona?
