@@ -118,6 +118,9 @@
     border-color: transparent;
     margin: 0px 16px;
     min-width: 150px;
+    max-width: 15rem;
+    font-size: 1rem;
+    background-color: #ffff52;
 }
 
 #label-dropdown-navbar-menu {
