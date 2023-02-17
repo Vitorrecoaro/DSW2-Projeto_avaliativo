@@ -285,4 +285,7 @@
             "grid-aside grid-aside"
             "grid-right grid-right";
     }
+    .grid-content-title {
+        flex-direction: column;
+    }
 }

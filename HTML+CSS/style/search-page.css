@@ -120,7 +120,7 @@
     min-width: 150px;
     max-width: 15rem;
     font-size: 1rem;
-    background-color: #ffff52;
+    background-color: #fff;
 }
 
 #label-dropdown-navbar-menu {
@@ -140,37 +140,6 @@
     justify-content: center;
     align-items: center;
 }
-
-/* @media (max-width: 44.6875rem) {
-    .grid-search-filter {
-        width: 27.5rem;
-        height: 4.125rem;
-        top: 5.625rem;
-        left: 0rem;
-        padding-left: 0.625rem;
-        background-color: #df7777;
-    }
-
-    .grid-search-filter::before {
-        background-color: #df7777;
-        width: calc(100vw - 15.625rem);
-        height: 3.125rem;
-        top: -3.125rem;
-        left: 15.625rem;
-    }
-
-    .grid-search-filter:after {
-        content: "";
-        position: absolute;
-        top: -4.4375rem;
-        left: 24.85rem;
-        width: 6.25rem;
-        height: 7.487rem;
-        background: #df7777;
-        z-index: -3;
-        transform: rotate(45deg);
-    }
-} */
 
 @media (min-width: 768px) {
     .grid-content-search-results {
@@ -208,7 +177,7 @@
     .filter select {
         margin: 10px 0px;
         padding: 10px 0px;
-        flex-direction: column;
+        max-width: none;
     }
 
     .grid-search-filter .search-categories {
