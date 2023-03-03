@@ -1,11 +1,11 @@
 import logo from './logo.svg';
-import Landing from './pages/landing';
-import Search from './pages/search';
+import Landing from './views/landing';
+import Search from './views/search';
 
 function App() {
   return (
     <div className="App">
-      <Landing />
+      <Search />
     </div>
   );
 }

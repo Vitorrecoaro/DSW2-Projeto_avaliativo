@@ -5,16 +5,16 @@ import "../stylesheet/search-page.css";
 
 function SearchFilter(){
     return(
-        <div class="grid-search-filter">
-            <label id="label-dropdown-navbar-menu" for="checkbox-dropdown-navbar-menu">
-                <i class="material-icons navbar-menu-icon"> menu </i>
+        <div className="grid-search-filter">
+            <label id="label-dropdown-navbar-menu" htmlFor="checkbox-dropdown-navbar-menu">
+                <i className="material-icons navbar-menu-icon"> menu </i>
             </label>
             <input type="checkbox" id="checkbox-dropdown-navbar-menu" />
-            <div class="search-categories">
-                <div class="filter">
-                    <label for="filter-type">Tipo:</label>
-                    <select id="filter-type" name="filter-type">
-                        <option value="" selected>Todos</option>
+            <div className="search-categories">
+                <div className="filter">
+                    <label htmlFor="filter-type">Tipo:</label>
+                    <select id="filter-type" name="filter-type" defaultValue="">
+                        <option value="">Todos</option>
                         <option value="Aço">Aço</option>
                         <option value="Água">Água</option>
                         <option value="Dragão">Dragão</option>
@@ -35,10 +35,10 @@ function SearchFilter(){
                         <option value="Voador">Voador</option>
                     </select>
                 </div>
-                <div class="filter">
-                    <label for="filter-generation">Geração:</label>
-                    <select id="filter-generation" name="filter-generation">
-                        <option value="" selected>Todas</option>
+                <div className="filter">
+                    <label htmlFor="filter-generation">Geração:</label>
+                    <select id="filter-generation" name="filter-generation" defaultValue="">
+                        <option value="">Todas</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -49,7 +49,7 @@ function SearchFilter(){
                         <option value="8">8</option>
                     </select>
                 </div>
-                <input type="button" class="button-filter" value="Filtrar" />
+                <input type="button" className="button-filter" value="Filtrar" />
             </div>
         </div>
     );

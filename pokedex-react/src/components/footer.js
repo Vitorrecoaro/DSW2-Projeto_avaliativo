@@ -4,7 +4,7 @@ import "../stylesheet/footer.css";
 
 function Footer(){
     return(
-        <div class="grid-footer">
+        <div className="grid-footer" id="footer">
             <p>Feito por:</p>
             <p>Matheus Rezende Milani Videira</p>
             <p>Vanessa de Cássia Alves</p>
