@@ -1,38 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { getPokemon } from "../services/search";
 
 import pokedexwpp from "../images/pokedexwpp.jpg";
 
-var path = process.env.PUBLIC_URL + "/types/";
+var type_icon = process.env.PUBLIC_URL + "/types/";
+
+var type_bg = process.env.PUBLIC_URL + "/background/";
 
 function SearchResultCard(props) {
     const [pokemon, setPokemon] = React.useState({});
     const [isLoading, setIsLoading] = React.useState(true);
     const [isImageLoading, setIsImageLoading] = React.useState(true);
+    const [hidden, setHidden] = React.useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         setIsLoading(true);
         setIsImageLoading(true);
         if (props.pokemonUrl !== undefined) {
         getPokemon(props.pokemonUrl).then((pokemon) => {
             setPokemon(pokemon);
-            setIsLoading(false);
         });
         }
     }, [props.pokemonUrl]);
 
+    useEffect(() => {
+        if (pokemon.id !== undefined) {
+            setIsLoading(false);
+        }
+    }, [pokemon]);
+    
     const handleImageLoad = () => {
         setIsImageLoading(false);
     };
 
     return (
-        <a href="#">
+        <Link to={"/pokemon/" + pokemon?.id}>
                 <div className="grid-content-search-results-item">
-                    <img
+                    {!isLoading && (<img
                         className="search-results-item-img-bg"
-                        src={pokedexwpp}
+                        src={type_bg + pokemon?.types[0].type.name + ".jpg"}
                         alt="Pokedex"
-                    />
+                    />)}
                     {isImageLoading && (
                         <div className="search-skeleton-item-img"></div>
                     )}
@@ -47,12 +56,12 @@ function SearchResultCard(props) {
                     )}
                         <div className="search-results-item-info">
                             <h2 className={isLoading ? "search-skeleton-item-h2" : undefined}>{!isLoading && ("#" + pokemon.id + " " + pokemon.name)}</h2>
-                            <p className={isLoading ? "search-skeleton-item-p" : undefined}>{!isLoading && (pokemon.types.map((type) => (
-                                <img src={path + type.type.name + ".png"} alt="Type" />
-                            )))}</p>
+                            <p className={isLoading ? "search-skeleton-item-p" : undefined}>{!isLoading && pokemon?.types.map((type) => (
+                                        <img className="content-title-properties" key={type.type.name} src={type_icon + type.type.name + ".png"} alt="Type" />
+                                    ))}</p>
                         </div>
                 </div>
-        </a>
+        </Link>
     );
 }
 

@@ -54,6 +54,14 @@
     margin-top: 0.625rem;
 }
 
+.grid-content-search {
+    width: calc(100vw - 48px);
+}
+
+.grid-content-search-results {
+    width: 100%;
+}
+
 .grid-content-search-results-item {
     background-color: #fff;
     padding: 0.625rem;

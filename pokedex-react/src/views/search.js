@@ -1,4 +1,5 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "../stylesheet/default.css";
 import "../stylesheet/search-page.css";
 import Header from "../components/header";
@@ -8,19 +9,22 @@ import SearchResult from "../components/searchResult";
 
 export default function Search() {
     const [search, setSearch] = React.useState(null);
+    const { searchParam } = useParams();
+    const navigate = useNavigate();
 
-    function getSearch(data) {
-        if (data === "") {
-            setSearch(null);
+    useEffect(() => {
+        if (searchParam !== undefined) {
+            setSearch(searchParam);
         } else {
-            setSearch(data);
+            setSearch(null);
         }
-    }
+    }, [searchParam]);
+
 
     return (
         <div className="search-page">
             <div className="grid-container">
-                <Header onSearch={getSearch} />
+                <Header />
                 <SearchFilter />
                 <div className="grid-content">
                     <div className="grid-content-search">

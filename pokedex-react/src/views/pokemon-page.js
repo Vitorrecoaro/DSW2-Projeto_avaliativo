@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useParams, useNavigate } from "react-router-dom";
 import "../stylesheet/default.css";
 import "../stylesheet/pokemon-page.css";
 import Header from "../components/header";
@@ -7,22 +7,32 @@ import Footer from "../components/footer";
 import pokedexWpp from "../images/pokedexwpp.jpg";
 import fundoCarta from "../images/fundo_carta.png";
 
-var path = process.env.PUBLIC_URL + "/types/";
+var type_logo = process.env.PUBLIC_URL + "/types/";
 
-function PokemonPage(props) {
-    const [pokemonId, setPokemonId] = React.useState(props.id);
+var type_bg = process.env.PUBLIC_URL + "/background/";
+
+function PokemonPage() {
+    const [pokemonId, setPokemonId] = React.useState(null);
     const [pokemon, setPokemon] = React.useState(null);
     const [stats, setStats] = React.useState(null);
     const [flavorText, setFlavorText] = React.useState(null);
     const [sprite, setSprite] = React.useState(0);
     const [spriteList, setSpriteList] = React.useState(null);
+    const { id } = useParams();
+    const navigate = useNavigate();
 
     React.useEffect(() => {
+        setPokemonId(Number(id));
+    }, [id]);
+
+    React.useEffect(() => {
+        if(pokemonId !== null && pokemonId !== undefined){
         fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonId)
             .then((response) => response.json())
             .then((data) => {
                 setPokemon(data);
             });
+        }
     }, [pokemonId]);
 
     React.useEffect(() => {
@@ -99,7 +109,6 @@ function PokemonPage(props) {
                 list.push(...extractUrlFromSprites(sublist, value));
             }
         }
-        console.log(list);
         return list;
     }
 
@@ -126,12 +135,12 @@ function PokemonPage(props) {
 
     function handlePokemonPrev() {
         if (pokemonId > 1) {
-            setPokemonId(pokemonId - 1);
-        }
+            navigate("/pokemon/" + (pokemonId - 1));
+        }        
     }
 
     function handlePokemonNext() {
-        setPokemonId(pokemonId + 1);
+            navigate("/pokemon/" + (pokemonId + 1));
     }
 
 
@@ -139,9 +148,9 @@ function PokemonPage(props) {
         <div className="pokemon-page">
             <div className="grid-container">
                 <Header />
-                {pokemon && (<>
+                {pokemon ? (<>
                     <div className="grid-image">
-                        <img className="pokedex-background" src={pokedexWpp} alt="Pokedex" />
+                        <img className="pokedex-background" src={type_bg + pokemon?.types[0].type.name + ".jpg"} alt="Pokedex" />
                         <img className="pokedex-pokemon-image"
                             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
                             alt="Pokemon" />
@@ -161,7 +170,7 @@ function PokemonPage(props) {
                                 <h2>{"#" + pokemon.id + " " + pokemon.name}</h2>
                                 <div className="pokemon-types">
                                     {pokemon?.types.map((type) => (
-                                        <img className="content-title-properties" src={path + type.type.name + ".png"} alt="Type" />
+                                        <img className="content-title-properties" src={type_logo + type.type.name + ".png"} alt="Type" />
                                     ))}
                                 </div>
                             </div>
@@ -216,7 +225,9 @@ function PokemonPage(props) {
                                 ))}
                             </ul>
                         </div>
-                    </div> </>)}
+                    </div> </>) : (
+                        <div className="search-skeleton-item-img"></div>
+                    )}
                 <Footer />
             </div>
         </div>
