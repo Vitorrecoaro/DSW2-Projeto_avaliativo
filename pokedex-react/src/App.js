@@ -1,11 +1,12 @@
 import logo from './logo.svg';
 import Landing from './views/landing';
 import Search from './views/search';
+import PokemonPage from './views/pokemon-page';
 
 function App() {
   return (
     <div className="App">
-      <Search />
+      <PokemonPage id={1}/>
     </div>
   );
 }

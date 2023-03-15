@@ -12,10 +12,12 @@ function EndOfList(props) {
     }
     return (
         <div className="grid-bottom">
-            <button onClick={props.morePokemons}>Carregar mais</button>
+            <button onClick={props.morePokemons} className="button-filter">Carregar mais</button>
         </div>
     );
 }
+
+
 
 function SearchResult(props) {
     const qtdPoke = 30;
@@ -23,7 +25,7 @@ function SearchResult(props) {
     const [offset, setOffset] = React.useState(0);
     const [totalCount, setTotalCount] = React.useState(0);
     const [allPokemons, setAllPokemons] = React.useState([]);
-    const [maxPokemons, setMax] = React.useState(1010);
+    const [maxPokemons, setMax] = React.useState(0);
 
     async function getInitialPokemons() {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${0}&limit=${qtdPoke}`).then((res) =>
@@ -31,9 +33,13 @@ function SearchResult(props) {
         );
         const pokemons = response.results;
 
+        const newRes = [];
         for (let pokemon of pokemons) {
-            setRes((res) => [...res, <SearchResultCard key={pokemon.name} pokemonUrl={pokemon.url} />]);
+            const pokemonData = await fetch(pokemon.url).then((res) => res.json());
+            newRes.push(<SearchResultCard key={pokemon.name} pokemonUrl={pokemon.url} />);
         }
+
+        setRes(newRes);
     }
 
     async function getMorePokemons() {
@@ -48,10 +54,12 @@ function SearchResult(props) {
         );
         const pokemons = response.results;
 
+        const newRes = res;
         for (let pokemon of pokemons) {
-            setRes((res) => [...res, <SearchResultCard key={pokemon.name} pokemonUrl={pokemon.url} />]);
+            newRes.push(<SearchResultCard key={pokemon.name} pokemonUrl={pokemon.url}/>);
         }
 
+        setRes(newRes);
         setTotalCount(offset + diff);
         setOffset(offset + diff);
     }
@@ -62,21 +70,25 @@ function SearchResult(props) {
         setTotalCount(searchedPokemons.length);
         setMax(searchedPokemons.length);
 
+        const newRes = []
         for (let pokemon of searchedPokemons) {
-            setRes((res) => [...res, <SearchResultCard key={pokemon.name} pokemonUrl={pokemon.url} />]);
+            newRes.push(<SearchResultCard key={pokemon.name} pokemonUrl={pokemon.url}/>);
         }
+        setRes(newRes)
     }
 
     async function getAllPokemons() {
-        const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1008").then((res) => res.json());
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${maxPokemons}`).then((res) => res.json());
         setAllPokemons(response.results);
     }
 
-    function resetPage() {
-        setRes([]);
+    async function resetPage() {
+        setRes(new Array(qtdPoke).fill().map((_, index) => <SearchResultCard key={index} />));
+
+        const totalCount = await fetch("https://pokeapi.co/api/v2/pokemon").then((res) => res.json());
         setTotalCount(30);
         setOffset(30);
-        setMax(1010);
+        setMax(totalCount.count);
         getInitialPokemons();
     }
 
@@ -95,7 +107,7 @@ function SearchResult(props) {
 
     return (
         <>
-            <h1>{totalCount + " Pokémon's encontrados"}</h1>
+            <h1>{maxPokemons + " Pokémon's encontrados"}</h1>
             <div className="grid-content-search-results">{res}</div>
             <EndOfList max={maxPokemons} morePokemons={getMorePokemons} qtdPokemon={totalCount}></EndOfList>
         </>
