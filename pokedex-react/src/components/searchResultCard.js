@@ -37,14 +37,15 @@ function SearchResultCard(props) {
     return (
         <Link to={"/pokemon/" + pokemon?.id}>
                 <div className="grid-content-search-results-item">
-                    {!isLoading && (<img
+                    {!isImageLoading && (<img
                         className="search-results-item-img-bg"
                         src={type_bg + pokemon?.types[0].type.name + ".jpg"}
                         alt="Pokedex"
                     />)}
-                    {isImageLoading && (
+                    {isImageLoading && (<>
+                        <div className="search-results-item-img-bg"></div>
                         <div className="search-skeleton-item-img"></div>
-                    )}
+                    </>)}
                     {!isLoading && (
                     <img
                         className="search-results-item-img"
