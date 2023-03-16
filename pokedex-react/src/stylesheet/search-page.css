@@ -54,6 +54,14 @@
     margin-top: 0.625rem;
 }
 
+.grid-content-search {
+    width: calc(100vw - 48px);
+}
+
+.grid-content-search-results {
+    width: 100%;
+}
+
 .grid-content-search-results-item {
     background-color: #fff;
     padding: 0.625rem;
@@ -96,6 +104,51 @@
 .search-results-item-info {
     margin-top: -12.5rem;
     padding: 0.625rem;
+}
+
+.search-skeleton-item-img {
+    width: 100%;
+    height: 15rem;
+    object-fit: contain;
+    position: relative;
+    bottom: 12.5rem;
+    background-image: linear-gradient(90deg, #aaaaaa, #dddddd, #aaaaaa, #dddddd);
+    background-size: 300% 100%;
+    animation: loading 2s infinite linear;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+.search-skeleton-item-info {
+    margin-top: -12.5rem;
+    padding: 0.625rem;
+}
+
+/* H2 skeleton */
+.search-skeleton-item-h2 {
+    width: 100%;
+    height: 36px;
+    background-image: linear-gradient(90deg, #aaaaaa, #dddddd, #aaaaaa, #dddddd);
+    background-size: 300% 100%;
+    animation: loading 2s infinite linear;
+    margin-bottom: 0.625rem;
+}
+
+/* P skeleton */
+.search-skeleton-item-p {
+    width: 100%;
+    height: 56px;
+    background-image: linear-gradient(90deg, #aaaaaa, #dddddd, #aaaaaa, #dddddd);
+    background-size: 300% 100%;
+    animation: loading 2s infinite linear;
+    margin-bottom: 0.625rem;
 }
 
 .grid-search-filter .search-categories {
