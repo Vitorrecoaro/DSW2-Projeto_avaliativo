@@ -12,12 +12,12 @@ function EndOfList(props) {
     }
     return (
         <div className="grid-bottom">
-            <button onClick={props.morePokemons} className="button-filter">Carregar mais</button>
+            <button onClick={props.morePokemons} className="button-filter">
+                Carregar mais
+            </button>
         </div>
     );
 }
-
-
 
 function SearchResult(props) {
     const qtdPoke = 30;
@@ -28,26 +28,33 @@ function SearchResult(props) {
     const [allPokemons, setAllPokemons] = React.useState([]);
 
     function generateResult(list, qtd) {
-        setRes(list.slice(0, qtd).map((pokemon) => (
-            <SearchResultCard 
-                key={pokemon.name} 
-                pokemonUrl={pokemon.url}
-                typeFilter={props.typeFilter}
-                generationFilter={props.generationFilter}/>
-        )));
+        setRes(
+            list
+                .slice(0, qtd)
+                .map((pokemon) => (
+                    <SearchResultCard
+                        key={pokemon.name}
+                        pokemonUrl={pokemon.url}
+                        typeFilter={props.typeFilter}
+                        generationFilter={props.generationFilter}
+                    />
+                ))
+        );
     }
 
     React.useEffect(() => {
         fetch(`https://pokeapi.co/api/v2/pokemon?limit=1`)
-            .then((res) => res.json()).then((data) => {
-                setTotalCount(data.count);
+            .then((res) => res.json())
+            .then((data) => {
+                setTotalCount(1010);
                 setFilterCount(data.count);
             });
     }, []);
 
     React.useEffect(() => {
         fetch(`https://pokeapi.co/api/v2/pokemon?limit=${totalCount}`)
-            .then((res) => res.json()).then((data) => {
+            .then((res) => res.json())
+            .then((data) => {
                 setAllPokemons(data.results);
             });
     }, [totalCount]);
@@ -63,10 +70,6 @@ function SearchResult(props) {
         }
     }, [props.search, allPokemons]);
 
-    function getMorePokemons() {
-        setOffset(offset + qtdPoke);
-    }
-
     React.useEffect(() => {
         if (props.search !== null) {
             const filter = allPokemons.filter((pokemon) => pokemon.name.includes(props.search));
@@ -76,10 +79,20 @@ function SearchResult(props) {
         }
     }, [offset]);
 
+    function getMorePokemons() {
+        setOffset(offset + qtdPoke);
+    }
+
     return (
         <>
             {props.search !== null && <h1>{"Filtrando por: " + props.search}</h1>}
-            <h1>{filterCount + " Pokémon" + (filterCount > 1 ? "'s" : "") + " encontrado" + (filterCount > 1 ? "s" : "")}</h1>
+            <h1>
+                {filterCount +
+                    " Pokémon" +
+                    (filterCount > 1 ? "'s" : "") +
+                    " encontrado" +
+                    (filterCount > 1 ? "s" : "")}
+            </h1>
             <div className="grid-content-search-results">{res}</div>
             <EndOfList max={filterCount} morePokemons={getMorePokemons} qtdPokemon={offset}></EndOfList>
         </>
