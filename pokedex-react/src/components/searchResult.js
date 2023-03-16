@@ -46,7 +46,7 @@ function SearchResult(props) {
         fetch(`https://pokeapi.co/api/v2/pokemon?limit=1`)
             .then((res) => res.json())
             .then((data) => {
-                setTotalCount(1010);
+                setTotalCount(data.count);
                 setFilterCount(data.count);
             });
     }, []);
@@ -61,7 +61,9 @@ function SearchResult(props) {
 
     React.useEffect(() => {
         if (props.search !== null) {
-            const filter = allPokemons.filter((pokemon) => pokemon.name.includes(props.search));
+            const filter = allPokemons.filter((pokemon) =>
+                pokemon.name.toLowerCase().includes(props.search.toLowerCase())
+            );
             setFilterCount(filter.length);
             generateResult(filter, qtdPoke);
         } else {

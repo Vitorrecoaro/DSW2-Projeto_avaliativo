@@ -4,8 +4,8 @@ import "../stylesheet/default.css";
 import "../stylesheet/pokemon-page.css";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import fundoCarta from "../images/fundo_carta.png";
 import { getName } from "../services/search";
+import { Link } from "react-router-dom";
 
 var type_logo = process.env.PUBLIC_URL + "/types/";
 
@@ -18,6 +18,7 @@ function PokemonPage() {
     const [flavorText, setFlavorText] = React.useState(null);
     const [sprite, setSprite] = React.useState(0);
     const [spriteList, setSpriteList] = React.useState(null);
+    const [varieties, setVarieties] = React.useState([]);
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -40,7 +41,21 @@ function PokemonPage() {
         getStats();
         getFlavorText();
         getSpriteList();
+        getVarieties();
     }, [pokemon]);
+
+    async function getVarieties() {
+        const pokemonSpecie = await fetch(pokemon?.species.url).then((response) => response.json());
+        const pokeVarieties = pokemonSpecie.varieties;
+        let dataVarieties = [];
+
+        for (let variety of pokeVarieties) {
+            const pokemonData = await fetch(variety.pokemon.url).then((res) => res.json());
+            const capitalizedName = pokemonData.name[0].toUpperCase() + pokemonData.name.substring(1);
+            dataVarieties.push({ name: capitalizedName, id: pokemonData.id });
+        }
+        setVarieties(dataVarieties);
+    }
 
     function getStats() {
         setStats(
@@ -234,8 +249,12 @@ function PokemonPage() {
                                     <div>
                                         <h2>Variantes:</h2>
                                         <ul>
-                                            {pokemon?.forms.map((form) => (
-                                                <li key={form.name}>{form.name}</li>
+                                            {varieties.map((variety) => (
+                                                <li key={variety.name}>
+                                                    <Link key={variety.name + "link"} to={"/pokemon/" + variety.id}>
+                                                        {variety.name}
+                                                    </Link>
+                                                </li>
                                             ))}
                                         </ul>
                                     </div>

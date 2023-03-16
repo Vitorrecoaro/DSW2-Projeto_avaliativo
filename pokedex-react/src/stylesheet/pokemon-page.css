@@ -103,6 +103,7 @@
     padding: 0.625rem;
     border-radius: 1.25rem;
     text-align: center;
+    min-width: 250px;
     z-index: 1;
 }
 
@@ -231,6 +232,8 @@
 
 .card-image {
     width: 65%;
+    min-width: 250px;
+    min-height: 250px;
 }
 
 .card-button {
@@ -290,6 +293,7 @@
     border-radius: 1.25rem;
     text-align: center;
     background-color: #5b9ecf;
+    min-width: 250px;
 }
 
 .grid-right ul {

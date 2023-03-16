@@ -20,7 +20,6 @@ export default function Search() {
         }
     }, [searchParam]);
 
-
     return (
         <div className="search-page">
             <div className="grid-container">
