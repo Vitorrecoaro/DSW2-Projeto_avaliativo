@@ -12,7 +12,12 @@ html {
 
 body {
     height: 100vh;
-    font-family: "Kanit", "Times New Roman", Times, serif;
+    font-family: "Kanit", "Times New Roman", Times, serif !important ;
+    color: black !important;
+}
+
+p {
+    margin-bottom: 0px !important;
 }
 
 .grid-container {
