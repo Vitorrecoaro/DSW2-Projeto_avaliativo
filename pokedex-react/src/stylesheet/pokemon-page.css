@@ -186,18 +186,19 @@
 
 .grid-content-left {
     grid-area: grid-content-left;
-    margin: 0.625rem;
-    padding: 0.625rem;
     border-radius: 1.25rem;
     text-align: center;
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .content-left-card {
     background-image: url("../images/fundo_carta.png");
     background-repeat: no-repeat;
     padding: 10px;
-    min-height: 400px;
+    height: 450px;
+    width: 400px;
     position: relative;
     display: flex;
     flex-direction: column;
