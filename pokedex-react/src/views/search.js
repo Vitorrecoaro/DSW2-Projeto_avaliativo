@@ -6,6 +6,7 @@ import Header from "../components/header";
 import SearchFilter from "../components/searchFilter";
 import Footer from "../components/footer";
 import SearchResult from "../components/searchResult";
+import Scroll from "../components/scroll";
 
 export default function Search() {
     const [search, setSearch] = React.useState(null);
@@ -30,6 +31,7 @@ export default function Search() {
                         <Suspense fallback={<div>Carregando</div>}>
                             <SearchResult search={search} />
                         </Suspense>
+                        <Scroll/>
                     </div>
                 </div>
                 <Footer />
