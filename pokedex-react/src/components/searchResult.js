@@ -37,6 +37,8 @@ function SearchResult(props) {
                         pokemonUrl={pokemon.url}
                         typeFilter={props.typeFilter}
                         generationFilter={props.generationFilter}
+                        favPokemonList={props.favPokemonList}
+                        setFavPokemonList={props.setFavPokemonList}
                     />
                 ))
         );

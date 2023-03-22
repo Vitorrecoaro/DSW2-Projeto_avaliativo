@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getPokemon } from "../services/search";
+import { MDBIcon } from "mdb-react-ui-kit";
 
 var type_icon = process.env.PUBLIC_URL + "/types/";
 
@@ -11,6 +12,7 @@ function SearchResultCard(props) {
     const [isLoading, setIsLoading] = React.useState(true);
     const [isImageLoading, setIsImageLoading] = React.useState(true);
     const [hidden, setHidden] = React.useState(false);
+    const [isFavorite, setIsFavorite] = React.useState(false);
 
     useEffect(() => {
         setIsLoading(true);
@@ -19,6 +21,7 @@ function SearchResultCard(props) {
             getPokemon(props.pokemonUrl).then((pokemon) => {
                 setPokemon(pokemon);
             });
+            props.favPokemonList.includes(pokemon.id) ? setIsFavorite(true) : setIsFavorite(false);
         }
     }, [props.pokemonUrl]);
 
@@ -32,8 +35,28 @@ function SearchResultCard(props) {
         setIsImageLoading(false);
     };
 
+    useEffect(() => {
+        if (props.favPokemonList.includes(pokemon.id)) {
+            setIsFavorite(true);
+        } else {
+            setIsFavorite(false);
+        }
+    }, [props.favPokemonList]);
+
+    const handleFavClick = () => {  
+        if (props.favPokemonList.includes(pokemon.id)) {
+            // Remove from fav list
+            props.setFavPokemonList(props.favPokemonList.filter((id) => id !== pokemon.id));
+        } else {
+            // Add to fav list
+            props.setFavPokemonList([...props.favPokemonList, pokemon.id]);
+        }
+        setIsFavorite(!isFavorite);
+    };
+
     return (
         <Link to={"/pokemon/" + pokemon?.id}>
+        {/* <Link to={""}> */}
             <div className="grid-content-search-results-item">
                 {!isImageLoading && (
                     <img
@@ -56,6 +79,11 @@ function SearchResultCard(props) {
                         alt={`${pokemon.name} image`}
                         onLoad={handleImageLoad}
                     />
+                )}
+                {isFavorite ? (
+                    <MDBIcon fas icon="heart" className="pokemon-favorite-star" onClick={handleFavClick} size="3x"/>
+                ) : (
+                    <MDBIcon far icon="heart" className="pokemon-favorite-star" onClick={handleFavClick} size="3x"/>
                 )}
                 <div className="search-results-item-info">
                     <h2 className={isLoading ? "search-skeleton-item-h2" : undefined}>

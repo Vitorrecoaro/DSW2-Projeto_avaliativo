@@ -19,6 +19,7 @@ function PokemonPage() {
     const [sprite, setSprite] = React.useState(0);
     const [spriteList, setSpriteList] = React.useState(null);
     const [varieties, setVarieties] = React.useState([]);
+    const [isFavorite, setIsFavorite] = React.useState(false);
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -31,9 +32,9 @@ function PokemonPage() {
             fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonId)
                 .then((response) => response.json())
                 .then(async (data) => {
-                    const name = await getName(data.species);
-                    setPokemon({ ...data, name: name });
+                    setPokemon(data);
                 });
+            JSON.parse(localStorage.getItem("favorites")).includes(pokemonId) ? setIsFavorite(true) : setIsFavorite(false);
         }
     }, [pokemonId]);
 
@@ -46,14 +47,13 @@ function PokemonPage() {
 
     async function getVarieties() {
         const pokemonSpecie = await fetch(pokemon?.species.url).then((response) => response.json());
-        const pokeVarieties = pokemonSpecie.varieties;
         let dataVarieties = [];
-
-        for (let variety of pokeVarieties) {
-            const pokemonData = await fetch(variety.pokemon.url).then((res) => res.json());
-            const capitalizedName = pokemonData.name[0].toUpperCase() + pokemonData.name.substring(1);
-            dataVarieties.push({ name: capitalizedName, id: pokemonData.id });
+        for (let variety of pokemonSpecie.varieties) {
+            const pokemonId = variety.pokemon.url.split("/")[6];
+            const pokemonName = variety.pokemon.name;
+            dataVarieties.push({ name: pokemonName, id: pokemonId });
         }
+
         setVarieties(dataVarieties);
     }
 
@@ -167,6 +167,23 @@ function PokemonPage() {
         }
     }
 
+    function handleFavClick() {
+        // Toggle pokemon in favorites
+        // favorites is saved in localstorage
+        let favorites = JSON.parse(localStorage.getItem("favorites"));
+        if (favorites === null) {
+            favorites = [];
+        }
+
+        if (favorites.includes(pokemonId)) {
+            favorites = favorites.filter((fav) => fav !== pokemonId);
+        } else {
+            favorites.push(pokemonId);
+        }
+        setIsFavorite(favorites.includes(pokemonId));
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+
     return (
         <div className="pokemon-page">
             <div className="grid-container">
@@ -200,16 +217,7 @@ function PokemonPage() {
                             <div className="grid-content-inside">
                                 <div className="grid-content-title">
                                     <h2>{"#" + pokemon.id + " " + pokemon.name}</h2>
-                                    <div className="pokemon-types">
-                                        {pokemon?.types.map((type) => (
-                                            <img
-                                                key={type.type.name}
-                                                className="content-title-properties"
-                                                src={type_logo + type.type.name + ".png"}
-                                                alt="Type"
-                                            />
-                                        ))}
-                                    </div>
+                                    <button className="pokedex-pokemon-favstar" onClick={handleFavClick}> {isFavorite ? "yes" : "no"} </button>
                                 </div>
 
                                 <div className="grid-content-left">
@@ -247,16 +255,17 @@ function PokemonPage() {
                                         <p>{flavorText}</p>
                                     </div>
                                     <div>
-                                        <h2>Variantes:</h2>
-                                        <ul>
-                                            {varieties.map((variety) => (
-                                                <li key={variety.name}>
-                                                    <Link key={variety.name + "link"} to={"/pokemon/" + variety.id}>
-                                                        {variety.name}
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                        <h2>Tipos:</h2>
+                                        <div className="pokemon-types">
+                                        {pokemon?.types.map((type) => (
+                                            <img
+                                                key={type.type.name}
+                                                className="content-title-properties"
+                                                src={type_logo + type.type.name + ".png"}
+                                                alt="Type"
+                                            />
+                                        ))}
+                                    </div>
                                     </div>
                                     <div>
                                         <div className="weight-height">
@@ -273,12 +282,25 @@ function PokemonPage() {
                                         <li key={ability.ability.name}>{ability.ability.name}</li>
                                     ))}
                                 </ul>
-                                <h2>Itens:</h2>
+                                { pokemon?.held_items.length > 0 && <>
+                                    <h2>Itens:</h2>
                                 <ul>
                                     {pokemon?.held_items.map((item) => (
                                         <li key={item.item.name}>{item.item.name}</li>
                                     ))}
                                 </ul>
+                                </>}
+                                { varieties.length > 1 && <>
+                                <h2>Variantes:</h2>
+                                        <ul>
+                                            {varieties.map((variety) => (
+                                                pokemon?.name !== variety.name && <li key={variety.name}>
+                                                    <Link className="variety-link" key={variety.name + "link"} to={"/pokemon/" + variety.id}>
+                                                        {variety.name}
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </ul> </>}
                             </div>
                         </div>{" "}
                     </>

@@ -117,6 +117,30 @@
     animation: loading 2s infinite linear;
 }
 
+.pokemon-favorite-star {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    color: #ff2020;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    pointer-events: auto;
+    z-index: 5;
+    display: none !important; 
+}
+
+/* Hide .pokemon-favorite-star when grid-content-search-results-item is not hovered*/
+.grid-content-search-results-item:hover .pokemon-favorite-star {
+    display: block !important;
+}
+
+.pokemon-favorite-star:hover {
+    color: #ff0000;
+    transform: scale(1.2);
+    transition: all 0.2s ease;
+}
+
 @keyframes loading {
     0% {
         background-position: 0% 0%;

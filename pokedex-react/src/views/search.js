@@ -11,7 +11,14 @@ import Scroll from "../components/scroll";
 export default function Search() {
     const [search, setSearch] = React.useState(null);
     const { searchParam } = useParams();
+    const [favPokemonList, setFavPokemonList] = React.useState(localStorage.getItem("favorites") !== null ? JSON.parse(localStorage.getItem("favorites")) : []);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (localStorage.getItem("favorites") !== null) {
+            setFavPokemonList(JSON.parse(localStorage.getItem("favorites")));
+        }
+    }, []);
 
     useEffect(() => {
         if (searchParam !== undefined) {
@@ -21,6 +28,10 @@ export default function Search() {
         }
     }, [searchParam]);
 
+    useEffect(() => {
+        localStorage.setItem("favorites", JSON.stringify(favPokemonList));
+    }, [favPokemonList]);
+
     return (
         <div className="search-page">
             <div className="grid-container">
@@ -29,7 +40,7 @@ export default function Search() {
                 <div className="grid-content">
                     <div className="grid-content-search">
                         <Suspense fallback={<div>Carregando</div>}>
-                            <SearchResult search={search} />
+                            <SearchResult search={search} favPokemonList={favPokemonList} setFavPokemonList={setFavPokemonList}/>
                         </Suspense>
                         <Scroll/>
                     </div>
