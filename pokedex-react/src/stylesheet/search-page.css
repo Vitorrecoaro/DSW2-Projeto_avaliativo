@@ -74,8 +74,8 @@
 .grid-content-search-results-item:hover {
     box-shadow: 0 0 0.625rem rgba(0, 0, 0, 1);
     border: rgb(0, 0, 0, 0.5) 0.0625rem solid;
-    transform: scale(1.1);
-    z-index: 1;
+    transform: scale(1.03);
+    z-index: 0;
     transition: all 0.2s ease;
 }
 
@@ -117,7 +117,7 @@
     animation: loading 2s infinite linear;
 }
 
-.pokemon-favorite-star {
+.search-results-item-fav-icon {
     position: absolute;
     top: 1.2rem;
     right: 1.2rem;
@@ -131,11 +131,11 @@
 }
 
 /* Hide .pokemon-favorite-star when grid-content-search-results-item is not hovered*/
-.grid-content-search-results-item:hover .pokemon-favorite-star {
+.grid-content-search-results-item:hover .search-results-item-fav-icon {
     display: block !important;
 }
 
-.pokemon-favorite-star:hover {
+.search-results-item-fav-icon:hover {
     color: #ff0000;
     transform: scale(1.2);
     transition: all 0.2s ease;
@@ -241,8 +241,8 @@
         display: flex;
         justify-content: flex-end;
         flex-direction: column;
-        height: fit-content;
         padding: 10px;
+        height: fit-content;
         align-items: flex-end;
     }
 
@@ -324,5 +324,15 @@
     transform: translateY(3px);
 }
 
+.navbar-menu-icon {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+    padding: 0px 10px;
+    padding-top: 10px;
+}
 
 

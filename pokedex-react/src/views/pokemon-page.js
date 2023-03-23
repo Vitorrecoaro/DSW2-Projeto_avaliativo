@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { MDBIcon } from "mdb-react-ui-kit";
 import "../stylesheet/default.css";
 import "../stylesheet/pokemon-page.css";
 import Header from "../components/header";
@@ -20,6 +21,11 @@ function PokemonPage() {
     const [spriteList, setSpriteList] = React.useState(null);
     const [varieties, setVarieties] = React.useState([]);
     const [isFavorite, setIsFavorite] = React.useState(false);
+    const [favIcon, setFavIcon] = React.useState(
+            <MDBIcon far icon="heart" className="pokemon-favorite-icon" onClick={handleFavClick} />
+    );
+
+
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -34,7 +40,6 @@ function PokemonPage() {
                 .then(async (data) => {
                     setPokemon(data);
                 });
-            JSON.parse(localStorage.getItem("favorites")).includes(pokemonId) ? setIsFavorite(true) : setIsFavorite(false);
         }
     }, [pokemonId]);
 
@@ -43,7 +48,40 @@ function PokemonPage() {
         getFlavorText();
         getSpriteList();
         getVarieties();
+        if(localStorage.getItem("favList") !== null){
+            const favorites = JSON.parse(localStorage.getItem("favList"));
+            if(favorites.includes(pokemonId)){
+                setIsFavorite(true);
+            } else {
+                setIsFavorite(false);
+            }
+        }
     }, [pokemon]);
+
+    React.useEffect(() => {
+        if(pokemon !== null){
+            if (isFavorite) {
+            // Add pokemon.id to favorites list in localstorage
+            let favList = JSON.parse(localStorage.getItem("favList"));
+            if (!favList.includes(pokemon.id)) {
+                favList.push(pokemon.id);
+                localStorage.setItem("favList", JSON.stringify(favList));
+            }
+            setFavIcon(
+                <MDBIcon fas icon="heart" className="pokemon-favorite-icon" onClick={handleFavClick} />
+            )
+        } else {
+            // Remove pokemon.id from favorites list in localstorage
+            let favList = JSON.parse(localStorage.getItem("favList"));
+            if (favList.includes(pokemon.id)) {
+                favList = favList.filter((id) => id !== pokemon.id);
+                localStorage.setItem("favList", JSON.stringify(favList));
+            }
+            setFavIcon(
+                <MDBIcon far icon="heart" className="pokemon-favorite-icon" onClick={handleFavClick} />
+            )
+        }}
+    }, [isFavorite]);
 
     async function getVarieties() {
         const pokemonSpecie = await fetch(pokemon?.species.url).then((response) => response.json());
@@ -170,18 +208,7 @@ function PokemonPage() {
     function handleFavClick() {
         // Toggle pokemon in favorites
         // favorites is saved in localstorage
-        let favorites = JSON.parse(localStorage.getItem("favorites"));
-        if (favorites === null) {
-            favorites = [];
-        }
-
-        if (favorites.includes(pokemonId)) {
-            favorites = favorites.filter((fav) => fav !== pokemonId);
-        } else {
-            favorites.push(pokemonId);
-        }
-        setIsFavorite(favorites.includes(pokemonId));
-        localStorage.setItem("favorites", JSON.stringify(favorites));
+        setIsFavorite(!isFavorite);
     }
 
     return (
@@ -217,7 +244,9 @@ function PokemonPage() {
                             <div className="grid-content-inside">
                                 <div className="grid-content-title">
                                     <h2>{"#" + pokemon.id + " " + pokemon.name}</h2>
-                                    <button className="pokedex-pokemon-favstar" onClick={handleFavClick}> {isFavorite ? "yes" : "no"} </button>
+                                    <div>
+                                        {favIcon}
+                                    </div>
                                 </div>
 
                                 <div className="grid-content-left">
