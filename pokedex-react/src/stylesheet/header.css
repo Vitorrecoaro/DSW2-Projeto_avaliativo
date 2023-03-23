@@ -171,12 +171,12 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.75);
-    z-index: 2;
+    z-index: 10;
 }
 
 
 .dialog-search-mobile {
-    width: 100%;
+    width: 80vw;
     height: 50px;
     background-color: #ff2020;
     border: 0.0625rem solid #000;
@@ -186,8 +186,8 @@
     font-weight: bold;
     position: fixed;
     top: 50vh;
-    left: 0;
-    z-index: 3;
+    left: 12.5vw;
+    z-index: 11;
 }
 
 .dialog-search-mobile-input {
