@@ -117,7 +117,7 @@
     animation: loading 2s infinite linear;
 }
 
-.pokemon-favorite-star {
+.search-results-item-fav-icon {
     position: absolute;
     top: 1.2rem;
     right: 1.2rem;
@@ -131,11 +131,11 @@
 }
 
 /* Hide .pokemon-favorite-star when grid-content-search-results-item is not hovered*/
-.grid-content-search-results-item:hover .pokemon-favorite-star {
+.grid-content-search-results-item:hover .search-results-item-fav-icon {
     display: block !important;
 }
 
-.pokemon-favorite-star:hover {
+.search-results-item-fav-icon:hover {
     color: #ff0000;
     transform: scale(1.2);
     transition: all 0.2s ease;

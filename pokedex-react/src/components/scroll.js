@@ -1,6 +1,5 @@
 import React from 'react';
 import { MDBBtn, MDBContainer, MDBIcon } from 'mdb-react-ui-kit';
-import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "../stylesheet/scroll.css";
 
 function Scroll() {
@@ -42,15 +41,6 @@ function Scroll() {
         size='lg'>
         <MDBIcon fas icon="arrow-up" />
       </MDBBtn>
-
-      <link
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        rel="stylesheet"
-        />
-      <link
-        href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-        rel="stylesheet"
-        />
 
 
     </MDBContainer>

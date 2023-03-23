@@ -37,8 +37,6 @@ function SearchResult(props) {
                         pokemonUrl={pokemon.url}
                         typeFilter={props.typeFilter}
                         generationFilter={props.generationFilter}
-                        favPokemonList={props.favPokemonList}
-                        setFavPokemonList={props.setFavPokemonList}
                     />
                 ))
         );
@@ -51,6 +49,10 @@ function SearchResult(props) {
                 setTotalCount(data.count);
                 setFilterCount(data.count);
             });
+        // if localstorage favList is empty, create it
+        if (localStorage.getItem("favList") === null) {
+            localStorage.setItem("favList", JSON.stringify([]));
+        }
     }, []);
 
     React.useEffect(() => {

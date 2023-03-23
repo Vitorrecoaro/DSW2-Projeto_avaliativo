@@ -13,6 +13,7 @@ function SearchResultCard(props) {
     const [isImageLoading, setIsImageLoading] = React.useState(true);
     const [hidden, setHidden] = React.useState(false);
     const [isFavorite, setIsFavorite] = React.useState(false);
+    const [favIcon, setFavIcon] = React.useState();
 
     useEffect(() => {
         setIsLoading(true);
@@ -21,13 +22,13 @@ function SearchResultCard(props) {
             getPokemon(props.pokemonUrl).then((pokemon) => {
                 setPokemon(pokemon);
             });
-            props.favPokemonList.includes(pokemon.id) ? setIsFavorite(true) : setIsFavorite(false);
         }
     }, [props.pokemonUrl]);
 
     useEffect(() => {
         if (pokemon.id !== undefined) {
             setIsLoading(false);
+            setIsFavorite(JSON.parse(localStorage.getItem("favList")).includes(pokemon.id));
         }
     }, [pokemon]);
 
@@ -36,28 +37,39 @@ function SearchResultCard(props) {
     };
 
     useEffect(() => {
-        if (props.favPokemonList.includes(pokemon.id)) {
-            setIsFavorite(true);
+        if (isFavorite) {
+            setFavIcon(
+                <MDBIcon fas icon="heart" className="search-results-item-fav-icon" onClick={handleFavClick} size="3x"/>
+            );
+            // Add pokemon.id to favorites list in localstorage
+            let favList = JSON.parse(localStorage.getItem("favList"));
+            if (!favList.includes(pokemon.id)) {
+                favList.push(pokemon.id);
+                localStorage.setItem("favList", JSON.stringify(favList));
+            }
         } else {
-            setIsFavorite(false);
+            setFavIcon(
+                <MDBIcon far icon="heart" className="search-results-item-fav-icon" onClick={handleFavClick} size="3x"/>
+            );
+            // Remove pokemon.id from favorites list in localstorage
+            let favList = JSON.parse(localStorage.getItem("favList"));
+            if (favList.includes(pokemon.id)) {
+                favList = favList.filter((id) => id !== pokemon.id);
+                localStorage.setItem("favList", JSON.stringify(favList));
+            }
         }
-    }, [props.favPokemonList]);
+    }, [isFavorite]);
 
     const handleFavClick = () => {  
-        if (props.favPokemonList.includes(pokemon.id)) {
-            // Remove from fav list
-            props.setFavPokemonList(props.favPokemonList.filter((id) => id !== pokemon.id));
-        } else {
-            // Add to fav list
-            props.setFavPokemonList([...props.favPokemonList, pokemon.id]);
-        }
         setIsFavorite(!isFavorite);
     };
 
     return (
-        <Link to={"/pokemon/" + pokemon?.id}>
-        {/* <Link to={""}> */}
             <div className="grid-content-search-results-item">
+                <div className="search-results-item-fav">
+                    {favIcon}
+                </div>
+                <Link to={"/pokemon/" + pokemon?.id}>
                 {!isImageLoading && (
                     <img
                         className="search-results-item-img-bg"
@@ -80,11 +92,6 @@ function SearchResultCard(props) {
                         onLoad={handleImageLoad}
                     />
                 )}
-                {isFavorite ? (
-                    <MDBIcon fas icon="heart" className="pokemon-favorite-star" onClick={handleFavClick} size="3x"/>
-                ) : (
-                    <MDBIcon far icon="heart" className="pokemon-favorite-star" onClick={handleFavClick} size="3x"/>
-                )}
                 <div className="search-results-item-info">
                     <h2 className={isLoading ? "search-skeleton-item-h2" : undefined}>
                         {!isLoading && "#" + pokemon.id + " " + pokemon.name}
@@ -101,8 +108,8 @@ function SearchResultCard(props) {
                             ))}
                     </p>
                 </div>
+                </Link>
             </div>
-        </Link>
     );
 }
 
