@@ -241,8 +241,8 @@
         display: flex;
         justify-content: flex-end;
         flex-direction: column;
-        height: fit-content;
         padding: 10px;
+        height: fit-content;
         align-items: flex-end;
     }
 
@@ -324,5 +324,15 @@
     transform: translateY(3px);
 }
 
+.navbar-menu-icon {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+    padding: 0px 10px;
+    padding-top: 10px;
+}
 
 
