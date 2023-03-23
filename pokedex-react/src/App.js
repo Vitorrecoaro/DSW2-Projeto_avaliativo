@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import Landing from './views/landing';
 import Search from './views/search';
 import PokemonPage from './views/pokemon-page';
+import NotFound from './views/404';
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/search/:searchParam?" element={<Search />} />
         <Route path="/pokemon/:id" element={<PokemonPage />} />
+        <Route path="/404" element={<NotFound/>} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
   );

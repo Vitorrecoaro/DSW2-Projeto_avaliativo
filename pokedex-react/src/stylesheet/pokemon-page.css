@@ -46,6 +46,40 @@
     filter: drop-shadow(0 0 0.75rem #ffffff) brightness(1.5);
 }
 
+.pokedex-pokemon-image-skeleton {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 0;
+    transition: all 0.5s ease;
+    background-image: linear-gradient(90deg, #aaaaaa, #dddddd, #aaaaaa, #dddddd);
+    background-size: 300% 100%;
+    animation: loading 2s infinite linear;
+}
+
+.pokemon-skeleton {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    transition: all 0.5s ease;
+    background-image: linear-gradient(90deg, #00000055, #55555555, #00000055, #55555555);
+    background-size: 300% 100%;
+    animation: loading 2s infinite linear;
+}
+
+.pokemon-skeleton-spinner {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
 .pokedex-pokemon-floor {
     content: " ";
     background: #d5d5d5;
@@ -247,6 +281,27 @@
     width: 65%;
     min-width: 250px;
     min-height: 250px;
+}
+
+.card-image-skeleton {
+    width: 65%;
+    min-width: 250px;
+    min-height: 250px;
+    background-image: linear-gradient(90deg, #aaaaaa, #dddddd, #aaaaaa, #dddddd);
+    background-size: 300% 100%;
+    animation: loading 2s infinite linear;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes loading {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
 }
 
 .card-button {

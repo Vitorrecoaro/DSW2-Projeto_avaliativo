@@ -24,7 +24,9 @@ function PokemonPage() {
     const [favIcon, setFavIcon] = React.useState(
             <MDBIcon far icon="heart" className="pokemon-favorite-icon" onClick={handleFavClick} />
     );
-
+    const [isCardImageLoading, setIsCardImageLoading] = React.useState(true);
+    const [isPokemonImageLoading, setIsPokemonImageLoading] = React.useState(true);
+    const [isPokemonLoading, setIsPokemonLoading] = React.useState(true);
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -34,11 +36,18 @@ function PokemonPage() {
     }, [id]);
 
     React.useEffect(() => {
+        setIsCardImageLoading(true);
+        setIsPokemonImageLoading(true);
+        setIsPokemonLoading(true);
         if (pokemonId !== null && pokemonId !== undefined) {
             fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonId)
                 .then((response) => response.json())
                 .then(async (data) => {
                     setPokemon(data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    navigate("/404");
                 });
         }
     }, [pokemonId]);
@@ -56,6 +65,7 @@ function PokemonPage() {
                 setIsFavorite(false);
             }
         }
+        setIsPokemonLoading(false);
     }, [pokemon]);
 
     React.useEffect(() => {
@@ -179,6 +189,7 @@ function PokemonPage() {
         } else {
             setSprite(spriteList.length - 1);
         }
+        setIsCardImageLoading(true);
     }
 
     function handleSpriteNext() {
@@ -187,6 +198,7 @@ function PokemonPage() {
         } else {
             setSprite(0);
         }
+        setIsCardImageLoading(true);
     }
 
     function handlePokemonPrev() {
@@ -217,16 +229,23 @@ function PokemonPage() {
                 <Header />
                 {pokemon ? (
                     <>
+                        {isPokemonLoading &&
+                        <div className="pokemon-skeleton">
+                            <MDBIcon icon="spinner" className="pokemon-skeleton-spinner" spin size="4x"/>
+                        </div>}
                         <div className="grid-image">
                             <img
                                 className="pokedex-background"
                                 src={type_bg + pokemon?.types[0].type.name + ".jpg"}
                                 alt="Pokedex"
                             />
+                            {isPokemonImageLoading && 
+                                <div className="pokedex-pokemon-image-skeleton"></div>}
                             <img
                                 className="pokedex-pokemon-image"
                                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
                                 alt="Pokemon"
+                                onLoad={() => setIsPokemonImageLoading(false)}
                             />
                             <div className="pokedex-pokemon-floor"></div>
                             <button className="pokedex-pokemon-button pokedex-pokemon-prev" onClick={handlePokemonPrev}>
@@ -261,11 +280,15 @@ function PokemonPage() {
                                                         onClick={handleSpritePrev}>
                                                         {"<"}
                                                     </button>
+                                                    { isCardImageLoading &&
+                                                        <div className="card-image-skeleton"></div>
+                                                    }
                                                     <img
                                                         key={spriteList[sprite][0]}
                                                         className="card-image"
                                                         src={spriteList[sprite][1]}
                                                         alt="Card"
+                                                        onLoad={() => setIsCardImageLoading(false)}
                                                     />
                                                     <button
                                                         className="card-button card-next"
