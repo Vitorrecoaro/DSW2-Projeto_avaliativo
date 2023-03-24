@@ -4,8 +4,8 @@ import { MDBIcon } from "mdb-react-ui-kit";
 import "../stylesheet/default.css";
 import "../stylesheet/search-page.css";
 
-function SearchFilter(){
-    return(
+function SearchFilter() {
+    return (
         <div className="grid-search-filter">
             <label id="label-dropdown-navbar-menu" htmlFor="checkbox-dropdown-navbar-menu">
                 <MDBIcon fas icon="filter" size="lg" className="navbar-menu-icon" />
