@@ -3,3 +3,14 @@
     justify-content: center;
     margin: 1rem;
 }
+
+.header-search {
+    display: flex;
+    justify-content: space-between;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #757575;
+}

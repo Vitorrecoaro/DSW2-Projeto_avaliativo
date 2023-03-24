@@ -11,13 +11,14 @@ import Scroll from "../components/scroll";
 export default function Search() {
     const [search, setSearch] = React.useState(null);
     const { searchParam } = useParams();
-
-    const navigate = useNavigate();
+    const [resetSearch, setReset] = React.useState(false);
 
     useEffect(() => {
         if (searchParam !== undefined) {
             setSearch(searchParam);
+            setReset(false);
         } else {
+            setReset(true);
             setSearch(null);
         }
     }, [searchParam]);
@@ -25,14 +26,14 @@ export default function Search() {
     return (
         <div className="search-page">
             <div className="grid-container">
-                <Header />
+                <Header resetSearch={resetSearch} />
                 <SearchFilter />
                 <div className="grid-content">
                     <div className="grid-content-search">
                         <Suspense fallback={<div>Carregando</div>}>
                             <SearchResult search={search} />
                         </Suspense>
-                        <Scroll/>
+                        <Scroll />
                     </div>
                 </div>
                 <Footer />
